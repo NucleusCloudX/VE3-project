@@ -28,6 +28,7 @@ jobs:
         with:
           aws-access-key-id: ${{ secrets.user_VE3_ACCESS_KEY }}
           aws-secret-access-key: ${{ secrets.user_VE3_SECRET_ACCESS_KEY }}
+          aws-region: ${{ env.AWS_REGION }}
     
       - name: Login to Amazon ECR
         id: login-ecr
