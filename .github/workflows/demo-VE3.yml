@@ -7,12 +7,12 @@ on:
 
 
 env:
-  AWS_REGION: us-east-1                  
-  ECR_REPOSITORY: demo-VE3         
-  ECS_SERVICE: demo-VE3                
-  ECS_CLUSTER: demo-VE3                
-  ECS_TASK_DEFINITION: .github/workflows/demo-VE3     
-  CONTAINER_NAME: demo-VE3           
+  AWS_REGION: us-west-1                  
+  ECR_REPOSITORY: demo-ve3         
+  ECS_SERVICE: demo-ve3                
+  ECS_CLUSTER: demo-ve3                
+  ECS_TASK_DEFINITION: .github/workflows/demo-ve3     
+  CONTAINER_NAME: demo-ve3           
       
 jobs:
   build-and-deploy:
