@@ -1,0 +1,48 @@
+{
+    "family": "demo-ve3",
+    "containerDefinitions": [
+        {
+            "name": "demo-ve3",
+            "image": "891377097093.dkr.ecr.us-west-1.amazonaws.com/demo-ve3",
+            "cpu": 0,
+            "portMappings": [
+                {
+                    "name": "demo-ve3-80-tcp",
+                    "containerPort": 80,
+                    "hostPort": 80,
+                    "protocol": "tcp",
+                    "appProtocol": "http"
+                }
+            ],
+            "essential": true,
+            "environment": [],
+            "environmentFiles": [],
+            "mountPoints": [],
+            "volumesFrom": [],
+            "ulimits": [],
+            "logConfiguration": {
+                "logDriver": "awslogs",
+                "options": {
+                    "awslogs-group": "/ecs/demo-ve3",
+                    "awslogs-create-group": "true",
+                    "awslogs-region": "us-west-1",
+                    "awslogs-stream-prefix": "ecs"
+                },
+                "secretOptions": []
+            },
+            "systemControls": []
+        }
+    ],
+    "taskRoleArn": "arn:aws:iam::891377097093:role/ECS-VE3",
+    "executionRoleArn": "arn:aws:iam::891377097093:role/ECS-VE3",
+    "networkMode": "awsvpc",
+    "requiresCompatibilities": [
+        "FARGATE"
+    ],
+    "cpu": "1024",
+    "memory": "3072",
+    "runtimePlatform": {
+        "cpuArchitecture": "X86_64",
+        "operatingSystemFamily": "LINUX"
+    }
+}
