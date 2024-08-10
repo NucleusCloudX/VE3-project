@@ -7,7 +7,7 @@ on:
 
 
 env:
-  AWS_REGION: us-east-1                  
+  AWS_REGION: us-west-2                 
   ECR_REPOSITORY: ve3-demo       
   ECS_SERVICE: ve3-demo             
   ECS_CLUSTER: ve3-demo                
