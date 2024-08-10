@@ -11,7 +11,7 @@ env:
   ECR_REPOSITORY: ve3-demo       
   ECS_SERVICE: ve3-demo             
   ECS_CLUSTER: ve3-demo                
-  ECS_TASK_DEFINITION: .github/workflows/ve3-demo.josn     
+  ECS_TASK_DEFINITION: .github/workflows/ve3-demo.json    
   CONTAINER_NAME: ve3-demo
       
 jobs:
