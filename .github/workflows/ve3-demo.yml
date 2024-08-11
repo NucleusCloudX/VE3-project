@@ -6,13 +6,14 @@ on:
       - "main"
 
 
+
 env:
   AWS_REGION: us-west-2                 
-  ECR_REPOSITORY: ve3-demo       
-  ECS_SERVICE: ve3-demo             
-  ECS_CLUSTER: ve3-demo                
-  ECS_TASK_DEFINITION: .github/workflows/ve3-demo.json    
-  CONTAINER_NAME: ve3-demo
+  ECR_REPOSITORY: dipu04    
+  ECS_SERVICE: dipu04        
+  ECS_CLUSTER: dipu04                
+  ECS_TASK_DEFINITION: dipu04.json    
+  CONTAINER_NAME: dipu04
       
 jobs:
   build-and-deploy:
