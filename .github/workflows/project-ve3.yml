@@ -1,52 +1,67 @@
-name: CICD
+name: Deploy to Amazon ECS for VE3
 
 on:
   push:
-    branches: main
+    branches:
+      - "main"
 
+
+
+env:
+  AWS_REGION: ap-south-1                
+  ECR_REPOSITORY: project-ve3
+  ECS_SERVICE: service-ve3       
+  ECS_CLUSTER: project-ve3             
+  ECS_TASK_DEFINITION: .github/workflows/project-ve3.json  
+  CONTAINER_NAME: container-ve3
+      
 jobs:
   build-and-deploy:
     runs-on: [ ubuntu-latest ]
     steps:
+
       - name: Checkout source
         uses: actions/checkout@v3
+
       - name: Configure AWS credentials
         uses: aws-actions/configure-aws-credentials@v3
+        
         with:
-          aws-access-key-id: ${{ secrets.USER_VE3_ACCESS_KEY }}
-          aws-secret-access-key: ${{ secrets.USER_VE3_SECRET_ACCESS_KEY}}
-          aws-region: 'ap-south-1'
+          aws-access-key-id: ${{ secrets.user_VE3_ACCESS_KEY }}
+          aws-secret-access-key: ${{ secrets.user_VE3_SECRET_ACCESS_KEY }}
+          aws-region: ${{ env.AWS_REGION }}
+    
       - name: Login to Amazon ECR
         id: login-ecr
         uses: aws-actions/amazon-ecr-login@v1
         with:
           mask-password: 'true'
-          
       - name: Build, tag, and push image to Amazon ECR
         id: build-image
         env:
           ECR_REGISTRY: ${{ steps.login-ecr.outputs.registry }}
           IMAGE_TAG: ${{ github.sha }}
-          REPOSITORY: project-ve3
         run: |
-          # Build a docker container and
-          # push it to ECR so that it can
-          # be deployed to ECS.
-          docker build -t $ECR_REGISTRY/$REPOSITORY:$IMAGE_TAG .
-          docker push $ECR_REGISTRY/$REPOSITORY:$IMAGE_TAG
-          echo "image=$ECR_REGISTRY/$REPOSITORY:$IMAGE_TAG" >> $GITHUB_OUTPUT    
+           # Build a docker container and
+           # push it to ECR so that it can
+           # be deployed to ECS.
+           docker build -t $ECR_REGISTRY/$ECR_REPOSITORY:$IMAGE_TAG .
+           docker push $ECR_REGISTRY/$ECR_REPOSITORY:$IMAGE_TAG
+           echo "::set-output name=image::$ECR_REGISTRY/$ECR_REPOSITORY:$IMAGE_TAG"
+
 
       - name: Fill in the new image ID in the Amazon ECS task definition
         id: task-def
         uses: aws-actions/amazon-ecs-render-task-definition@v1
         with:
-          task-definition: project-ve3.json
-          container-name: container-ve3
-          image: ${{ steps.build-image.outputs.image }}    
+          task-definition: ${{ env.ECS_TASK_DEFINITION }}
+          container-name: ${{ env.CONTAINER_NAME }}
+          image: ${{ steps.build-image.outputs.image }}
+
       - name: Deploy Amazon ECS task definition
         uses: aws-actions/amazon-ecs-deploy-task-definition@v1
         with:
           task-definition: ${{ steps.task-def.outputs.task-definition }}
-          service: service-ve31
-          cluster: project-ve3
-          wait-for-service-stability: true    
+          service: ${{ env.ECS_SERVICE }}
+          cluster: ${{ env.ECS_CLUSTER }}
+          wait-for-service-stability: true  
