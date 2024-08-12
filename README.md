@@ -16,7 +16,7 @@ Query for below scenarios:
     query{ findUserById(id:1000){ id firstName lastName email } }
 
 3) Create User with mutation operation
-    mutation{ createUser(firstName:"bhupendra",lastName:"purohit",email:"bhupenpatil277@gmail.com",password:"password"){ id firstName lastName email } }
+    mutation{ createUser(firstName:"bhupendra",lastName:"patil",email:"bhupenpatil277@gmail.com",password:"password"){ id firstName lastName email } }
 
 
    >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
