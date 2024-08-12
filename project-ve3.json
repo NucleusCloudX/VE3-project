@@ -1,13 +1,13 @@
 {
-    "taskDefinitionArn": "arn:aws:ecs:us-west-2:891377097093:task-definition/dipu04:1",
+    "taskDefinitionArn": "arn:aws:ecs:ap-south-1:891377097093:task-definition/project-ve3:1",
     "containerDefinitions": [
         {
-            "name": "dipu04",
-            "image": "891377097093.dkr.ecr.us-west-2.amazonaws.com/dipu04",
+            "name": "container-ve3",
+            "image": "891377097093.dkr.ecr.ap-south-1.amazonaws.com/project-ve3",
             "cpu": 0,
             "portMappings": [
                 {
-                    "name": "dipu04-5000-tcp",
+                    "name": "5000",
                     "containerPort": 5000,
                     "hostPort": 5000,
                     "protocol": "tcp",
@@ -23,9 +23,9 @@
             "logConfiguration": {
                 "logDriver": "awslogs",
                 "options": {
-                    "awslogs-group": "/ecs/dipu04",
+                    "awslogs-group": "/ecs/project-ve3",
                     "awslogs-create-group": "true",
-                    "awslogs-region": "us-west-2",
+                    "awslogs-region": "ap-south-1",
                     "awslogs-stream-prefix": "ecs"
                 },
                 "secretOptions": []
@@ -33,7 +33,7 @@
             "systemControls": []
         }
     ],
-    "family": "dipu04",
+    "family": "project-ve3",
     "taskRoleArn": "arn:aws:iam::891377097093:role/ECS-VE3",
     "executionRoleArn": "arn:aws:iam::891377097093:role/ECS-VE3",
     "networkMode": "awsvpc",
@@ -77,13 +77,13 @@
     "requiresCompatibilities": [
         "FARGATE"
     ],
-    "cpu": "4096",
-    "memory": "8192",
+    "cpu": "1024",
+    "memory": "3072",
     "runtimePlatform": {
         "cpuArchitecture": "X86_64",
         "operatingSystemFamily": "LINUX"
     },
-    "registeredAt": "2024-08-11T07:05:06.786Z",
+    "registeredAt": "2024-08-12T14:51:33.561Z",
     "registeredBy": "arn:aws:iam::891377097093:root",
     "tags": []
 }
